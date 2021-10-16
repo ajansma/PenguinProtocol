@@ -8,6 +8,7 @@ public class AppController {
     private ArrayList<Program> programList = new ArrayList<>();
     private ArrayList<User> userList = new ArrayList<>();
     private ArrayList<Review> reviewList = new ArrayList<>();
+    private ArrayList<Location> locationList = new ArrayList<>();
     private DatabaseHandler handler = new DatabaseHandler();
 
     public AppController(){
@@ -26,6 +27,10 @@ public class AppController {
         ArrayList<JSONObject> jsonUserArray = handler.pullJSONArray("USER");
         for(JSONObject object : jsonUserArray){
             userList.add(new User(object));
+        }
+        ArrayList<JSONObject> jsonUserArray3 = handler.pullJSONArray("USER");
+        for(JSONObject object : jsonUserArray3){
+            locationList.add(new Location(object));
         }
 
 
