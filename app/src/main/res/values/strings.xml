@@ -3,9 +3,9 @@
     <string name="select_a_program">Select A Program:</string>
     <string name="country_name">COUNTRY_NAME</string>
     <string name="location_name">Location Name</string>
-    <string-array name="ProgramNames">
-        <string>Florence, Italy</string>
-        <string>Madrid, Spain</string>
-        <string>Copenhagen, Denmark</string>
-    </string-array>
+<!--    <string-array name="ProgramNames">-->
+<!--        <string>Florence, Italy</string>-->
+<!--        <string>Madrid, Spain</string>-->
+<!--        <string>Copenhagen, Denmark</string>-->
+<!--    </string-array>-->
 </resources>

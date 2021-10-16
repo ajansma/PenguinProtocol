@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCountryNames() {
+        //This will be populated with the values from the database
         countryNames.add("Italy");
         countryNames.add("Spain");
         countryNames.add("Denmark");
