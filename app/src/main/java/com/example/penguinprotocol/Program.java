@@ -1,20 +1,23 @@
 package com.example.penguinprotocol;
 
+import org.json.JSONArray;
+import org.json.simple.JSONObject;
+
 /**
  *
  */
 public class Program {
+    private int program_id;
     private String programName;
     private String city;
     private String country;
-    private String semester;
+    private String school;
 
     //DVC
     public Program() {
         programName = "NEW_PROGRAM";
         city = "NEW_CITY";
         country = "NEW_COUNTRY";
-        semester = "NEW_SEMESTER";
     }
 
     //EVC
@@ -22,7 +25,22 @@ public class Program {
         this.programName = programName;
         this.city = city;
         this.country = country;
-        this.semester = semester;
+    }
+
+    public Program(JSONObject obj){
+        programName = obj.get("program").toString();
+        city = obj.get("city").toString();
+        school = obj.get("school").toString();
+        country = obj.get("country").toString();
+    }
+
+    public JSONObject returnJSON(){
+        JSONObject obj = new JSONObject();
+        obj.put("name", programName);
+        obj.put("school", school);
+        obj.put("city", city);
+        obj.put("country", country);
+        return obj;
     }
 
     /**
@@ -50,13 +68,5 @@ public class Program {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
     }
 }
