@@ -2,7 +2,8 @@ package com.example.penguinprotocol;
 import org.json.simple.JSONObject;
 
 public class User {
-
+    private int program;
+    private int userID;
     private String name;
     private String gradSemester;
     private DatabaseHandler database = new DatabaseHandler();

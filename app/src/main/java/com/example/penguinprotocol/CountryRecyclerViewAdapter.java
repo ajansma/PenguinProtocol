@@ -9,9 +9,7 @@ import java.util.ArrayList;
  *
  */
 class CountryRecyclerViewAdapter extends RecyclerViewAdapter {
-
-
-    public CountryRecyclerViewAdapter(Context mContext, ArrayList<String> itemNames, OnItemListener onItemListener) {
-        super(mContext, itemNames, onItemListener);
+    public CountryRecyclerViewAdapter(Context mContext, ArrayList<String> itemNames) {
+        super(mContext, itemNames);
     }
 }

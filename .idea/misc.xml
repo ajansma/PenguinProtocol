@@ -3,8 +3,7 @@
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
-<<<<<<< HEAD
-      <map>
+
         <entry key="..\:/Users/jaymi/AndroidStudioProjects/PenguinProtocol/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/jaymi/AndroidStudioProjects/PenguinProtocol/app/src/main/res/layout/layout_listitem.xml" value="0.33" />
       </map>
@@ -12,7 +11,6 @@
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="corretto-11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
-=======
->>>>>>> a542bac31a9c0f3bffa8d6fd605a2488a16c2e63
+
   </component>
 </project>
