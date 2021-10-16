@@ -1,46 +1,59 @@
 package com.example.penguinprotocol;
 
+import org.json.simple.JSONObject;
+
 public class Review {
-    private User user;
-    private Program program;
-    private String entryDate;
+    private int review_id;
+    private int user;
+    private int date;
+    private int location;
+    private String text;
+    private int stars;
+    private int price;
 
     public Review() {
-        user = new User();
-        program = new Program();
-        entryDate = "NULL_DATE";
+        //user = new User();
     }
 
-    public Review(User user, Program program, String entryDate) {
-        this.user = user;
-        this.program = program;
-        this.entryDate = entryDate;
+    public Review(int user, int date, int location, String text, int stars, int price) {
+       this.user = user;
+       this.date = date;
+       this.location = location;
+       this.text = text;
+       this.stars = stars;
+       this.price = price;
+
+    }
+
+    public Review(JSONObject obj){
+        review_id = (int)(obj.get("rid"));
+        user = (int)(obj.get("uid"));
+        date = (int)(obj.get("date"));
+        location = (int)(obj.get("location"));
+        text = obj.get("text").toString();
+        stars = (int)(obj.get("stars"));
+        price = (int)(obj.get("price"));
+    }
+
+    public JSONObject toJSON(){
+        JSONObject obj = new JSONObject();
+        obj.put("date", date);
+        obj.put("location", location);
+        obj.put("text", text);
+        obj.put("stars", stars);
+        obj.put("price", price);
+        return obj;
     }
 
     /**
      * Getters and Setters:
      */
-    public User getUser() {
+    public int getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public int getEntryDate() {
+        return date;
     }
 
-    public Program getProgram() {
-        return program;
-    }
-
-    public void setProgram(Program program) {
-        this.program = program;
-    }
-
-    public String getEntryDate() {
-        return entryDate;
-    }
-
-    public void setEntryDate(String entryDate) {
-        this.entryDate = entryDate;
-    }
 }
