@@ -12,7 +12,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.OnItemListener {
 
     private static final String TAG = "MainActivity";
 
@@ -28,19 +28,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCountryNames() {
-        //This will be populated with the values from the database
+        //This will be populated with the values from the database using loop
         countryNames.add("Italy");
         countryNames.add("Spain");
         countryNames.add("Denmark");
 
-        initRecyclerView();
+        initCountryRecyclerView();
     }
 
-    private void initRecyclerView() {
+    private void initCountryRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerView");
         RecyclerView recyclerView = findViewById(R.id.ProgramsRecyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, countryNames);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, countryNames, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 }
