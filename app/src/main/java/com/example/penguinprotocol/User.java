@@ -2,8 +2,7 @@ package com.example.penguinprotocol;
 import org.json.simple.JSONObject;
 
 public class User {
-    private int userID;
-    private int program;
+
     private String name;
     private String gradSemester;
     private DatabaseHandler database = new DatabaseHandler();
@@ -37,7 +36,6 @@ public class User {
     public void postData(){
 
     }
-
 
 
 
