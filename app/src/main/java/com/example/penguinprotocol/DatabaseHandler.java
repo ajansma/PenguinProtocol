@@ -1,6 +1,9 @@
 package com.example.penguinprotocol;
 
+import org.json.JSONArray;
 import org.json.simple.JSONObject;
+
+import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -16,17 +19,19 @@ public class DatabaseHandler {
         jsonObj.put(entry, data);
     }
 
-    public void sendPost(){
-        String jsonString = jsonObj.toJSONString();
-        sendData();
+    public void sendPost(JSONObject obj){
+        String jsonString = obj.toJSONString();
+        sendData(jsonString);
     }
 
-    public void sendData(){
+    public void sendData(String toSend){
         HttpsURLConnection connection = null;
 
     }
 
-    public String pullJSONObject(String databaseToPull){
-        return "jsonObj";
+    public ArrayList<JSONObject> pullJSONArray(String databaseToPull){
+        ArrayList<JSONObject> jsonArray = new ArrayList<JSONObject>();
+
+        return jsonArray;
     }
 }
