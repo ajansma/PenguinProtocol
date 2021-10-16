@@ -1,22 +1,25 @@
 
 package com.example.penguinprotocol;
 
-import androidx.annotation.LongDef;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
 
+/**
+ * MainActivity Represents the first page of the app that has all of the Location Names
+ * Implements onItemListener interface to detect for clicks on items in the recycler view
+ */
 public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.OnItemListener {
 
     private static final String TAG = "MainActivity";
 
-    private ArrayList<String> countryNames = new ArrayList<>();
+    private ArrayList<String> locationNames = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
     private void initCountryNames() {
         //This will be populated with the values from the database using loop
-        countryNames.add("Italy");
-        countryNames.add("Spain");
-        countryNames.add("Denmark");
+        locationNames.add("Italy");
+        locationNames.add("Spain");
+        locationNames.add("Denmark");
 
         initCountryRecyclerView();
     }
@@ -39,13 +42,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     private void initCountryRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerView");
         RecyclerView recyclerView = findViewById(R.id.ProgramsRecyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, countryNames, this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, locationNames, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
     public void onItemClick(int position) {
+        //This is where the item goes into the click
+        Log.d(TAG, "onItemClick: clicked pos " + position);
 
+        Intent intent = new Intent(this, LocationsActivity.class);
+        startActivity(intent);
     }
 }

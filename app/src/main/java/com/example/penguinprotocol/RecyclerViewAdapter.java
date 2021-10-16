@@ -23,7 +23,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private ArrayList<String> itemNames = new ArrayList<>();
     private Context mContext;
-    private OnItemListener onItemListener;
+    private OnItemListener onItemListener; //Global
 
     public RecyclerViewAdapter(Context mContext, ArrayList<String> itemNames, OnItemListener onItemListener) {
         this.itemNames = itemNames;
@@ -35,8 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
-        ViewHolder holder = new ViewHolder(view, onItemListener);
-        return holder;
+        return new ViewHolder(view, onItemListener); //Passes onItemListener to the ViewHolderConstructor
     }
 
     @Override
@@ -52,6 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 Toast.makeText(mContext, itemNames.get(position), Toast.LENGTH_LONG).show();
 
+
             }
         });
     }
@@ -64,7 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView itemText;
-        OnItemListener onItemListener;
+        OnItemListener onItemListener; //Global that exists in each ViewHolder (Each item in recycler view)
         ConstraintLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView, OnItemListener onItemListenerParam) {
@@ -78,6 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @Override
         public void onClick(View view) {
+            //This is what happens when the item is actually clicked
             onItemListener.onItemClick(getAdapterPosition());
         }
     }
