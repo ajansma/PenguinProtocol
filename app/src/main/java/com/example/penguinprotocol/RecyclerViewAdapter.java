@@ -3,6 +3,7 @@ package com.example.penguinprotocol;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private ArrayList<String> itemNames = new ArrayList<>();
     private Context mContext;
+    private AppController appController = new AppController();
 
     public RecyclerViewAdapter(Context mContext, ArrayList<String> itemNames) {
         this.itemNames = itemNames;
@@ -52,6 +54,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Toast.makeText(mContext, itemNames.get(position), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(mContext, LocationsActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putStringArrayList(appController.getLocationList());
                 mContext.startActivity(intent);
 
             }

@@ -16,7 +16,6 @@ import java.util.ArrayList;
  * Implements onItemListener interface to detect for clicks on items in the recycler view
  */
 public class MainActivity extends AppCompatActivity {
-
     private static final String TAG = "MainActivity";
 
     private ArrayList<String> locationNames = new ArrayList<>();
@@ -27,11 +26,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: started");
 
-        initCountryNames();
+        initCountryNames(AppController.getInstance());
     }
 
-    private void initCountryNames() {
+    private void initCountryNames(AppController appController) {
         //This will be populated with the values from the database using loop
+
+//        for (int i = 0; i < appController.getProgramList().size(); ++i) {
+//            locationNames.add(appController.getProgramList().get(i).getCountry());
+//        }
+
         locationNames.add("Italy");
         locationNames.add("Spain");
         locationNames.add("Denmark");
