@@ -27,6 +27,14 @@ public class ReviewActivity extends AppCompatActivity {
         calledLocationName = getIntent().getExtras().getString("locationName");
         TextView reviewScreenTitle = findViewById(R.id.selectedLocation);
         reviewScreenTitle.setText(calledLocationName);
+        Button newReviewButton = findViewById(R.id.newReviewButton);
+        
+        newReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: newReviewButtonClicked");
+            }
+        });
 
         initReviewNames(AppController.getInstance());
     }
