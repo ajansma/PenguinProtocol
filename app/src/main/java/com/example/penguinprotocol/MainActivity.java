@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
         try {
            AppController control = new AppController();
            ArrayList<Program> programList = control.getProgramList();
-            System.out.println("CHECK1");
+
            String country = programList.get(0).getCountry();
            ArrayList<String> locationList = control.getLocations(country);
-            System.out.println("CHECK2");
+           System.out.println("CHECK2");
            System.out.println("CITY" + locationList.get(0));
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCountryNames(AppController appController) {
-
         initCountryRecyclerView();
     }
 

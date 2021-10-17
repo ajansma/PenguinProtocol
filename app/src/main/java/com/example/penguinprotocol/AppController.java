@@ -26,7 +26,7 @@ public class AppController {
             for(int i = 0; i < rows.length(); i++) {
                 JSONObject firstRowItem = rows.getJSONObject(i);
                 programList.add(new Program(firstRowItem));
-                System.out.println(programList.get(0).getProgramName());
+                System.out.println("NAMES" + programList.get(0).getProgramName());
             }
         } catch (JSONException e) {
             e.printStackTrace();
