@@ -40,15 +40,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCountryNames(AppController appController) {
-        //This will be populated with the values from appController
-        //for (int i = 0; i < appController.getProgramList().size(); ++i) {
-       //     locationNames.add(appController.getProgramList().get(i).getCountry());
-       //}
-
-
-        programNames.add("Italy");
-        programNames.add("Spain");
-        programNames.add("Denmark");
 
         initCountryRecyclerView();
     }
