@@ -35,7 +35,9 @@ public class AppController {
     }
 
     public ArrayList<Review> getReviews(String Location){
-        String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"LOCATION\", \"where\": \"" + Location + "\"");
+       String payload = String.format("{\"sel\": \"%s\",\"table\": \"%s\",\"where\": \"%s\"}", "*", "LOCATION", "\"location =" + Location + "\"");
+       System.out.println("PAYLOAD" + payload);
+       String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"LOCATION\", \"where\": \"" + Location + "\"");
         try {
             JSONObject jsonObj = new JSONObject(jsonString);
             JSONArray rows = jsonObj.getJSONArray("rows");
@@ -58,8 +60,9 @@ public class AppController {
         return single_instance;
     }
 
-    public ArrayList<Location> getLocations(String country){
-        String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"LOCATION\", \"where\": \"" + country + "\"");
+    public ArrayList<String> getLocations(String country){
+        String payload = String.format("{\"sel\": \"%s\", \"table\": \"%s\", \"where\": \"%s\"}", "*", "LOCATION", "country=\\\"" + country + "\\\"");
+        String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", payload);
         try {
             JSONObject jsonObj = new JSONObject(jsonString);
             JSONArray rows = jsonObj.getJSONArray("rows");
@@ -73,7 +76,11 @@ public class AppController {
         for(int i = 0; i < locationList.size(); i++){
             System.out.println(locationList.get(i).getCity());
         }
-        return locationList;
+        ArrayList<String> newArray = new ArrayList<>();
+        for(int i = 0; i < locationList.size(); i++){
+            newArray.add(locationList.get(i).getName());
+        }
+         return newArray;
 
     }
 

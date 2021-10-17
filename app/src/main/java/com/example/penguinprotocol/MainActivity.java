@@ -26,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: started");
         try {
            AppController control = new AppController();
-            ArrayList<Program> programList = control.getProgramList();
-            String country = programList.get(0).getCountry();
-            ArrayList<Location> reviewList = control.getLocations(country);
-            System.out.println(reviewList.get(0).getCity());
+           ArrayList<Program> programList = control.getProgramList();
+            System.out.println("CHECK1");
+           String country = programList.get(0).getCountry();
+           ArrayList<String> locationList = control.getLocations(country);
+            System.out.println("CHECK2");
+           System.out.println("CITY" + locationList.get(0));
         } catch (Exception e) {
             e.printStackTrace();
         }
