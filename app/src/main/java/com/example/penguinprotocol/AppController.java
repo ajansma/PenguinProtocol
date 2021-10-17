@@ -19,6 +19,7 @@ public class AppController {
         for(JSONObject object : jsonArray){
             programList.add(new Program(object));
         }
+
         //gets an arraylist of reviews from the database class
         ArrayList<JSONObject> jsonArray2 = handler.pullJSONArray("REVIEW");
         for(JSONObject object : jsonArray2){
@@ -83,6 +84,7 @@ public class AppController {
 
     public void setHandler(DatabaseHandler handler) {
         this.handler = handler;
+
     }
 
 

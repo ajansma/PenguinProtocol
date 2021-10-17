@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: started");
+        try {
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         initCountryNames(AppController.getInstance());
     }
