@@ -18,22 +18,6 @@ public class AppController {
         for(JSONObject object : jsonArray){
             programList.add(new Program(object));
         }
-        //gets an arraylist of reviews from the database class
-        ArrayList<JSONObject> jsonArray2 = handler.pullJSONArray("REVIEW");
-        for(JSONObject object : jsonArray2){
-            reviewList.add(new Review(object));
-        }
-        //gets an arraylist of users from the database class
-        ArrayList<JSONObject> jsonUserArray = handler.pullJSONArray("USER");
-        for(JSONObject object : jsonUserArray){
-            userList.add(new User(object));
-        }
-        ArrayList<JSONObject> jsonUserArray3 = handler.pullJSONArray("USER");
-        for(JSONObject object : jsonUserArray3){
-            locationList.add(new Location(object));
-        }
-
-
     }
 
 
