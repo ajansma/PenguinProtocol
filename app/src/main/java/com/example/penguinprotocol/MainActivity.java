@@ -1,4 +1,3 @@
-
 package com.example.penguinprotocol;
 
 import androidx.appcompat.app.AppCompatActivity;

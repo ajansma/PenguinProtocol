@@ -84,4 +84,6 @@ public class AppController {
     public void setHandler(DatabaseHandler handler) {
         this.handler = handler;
     }
+
+
 }
