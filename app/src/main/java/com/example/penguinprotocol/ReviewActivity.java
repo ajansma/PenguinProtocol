@@ -33,6 +33,9 @@ public class ReviewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: newReviewButtonClicked");
+
+                setContentView(R.layout.activity_review_entry);
+
             }
         });
 
