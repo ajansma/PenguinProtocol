@@ -2,6 +2,7 @@ package com.example.penguinprotocol;
 
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.simple.JSONObject;
@@ -9,6 +10,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.JSONParser;
 
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,6 +19,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 
 import javax.net.ssl.HttpsURLConnection;
@@ -23,44 +27,44 @@ import javax.net.ssl.HttpsURLConnection;
 public class ConnectionHelper {
     private static final String TAG = "MainActivity";
 
-    public ConnectionHelper() throws Exception {
-        //bypass security issues
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        try {
-            //create the request url and open the url
-            String payload = "{\"sel\": \"*\" \"table\": \"PROGRAM\" \"where\": \"\"}";
+    public ConnectionHelper() {
 
-            URL url = new URL("http://147.222.70.33/basic-query");
-
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-            urlConnection.setRequestProperty("Accept", "application/json");
-            urlConnection.setDoInput(true);
-            OutputStream os = urlConnection.getOutputStream();
-            byte[] input = payload.getBytes();
-            os.write(input);
-            os.flush();
+        makeRequest("http://147.222.70.33", "/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"PROGRAM\", \"where\": \"\"}");
 
 
-            // get the json response
-            InputStream in = urlConnection.getInputStream();
-            InputStreamReader reader = new InputStreamReader(in);
-
-            String result = "";
-            int data = reader.read();
-            while (data != -1) {
-                result += (char) data;
-                data = reader.read();
-            }
-            System.out.println("RESULT" + result);
-            // parse the response for the data you are looking for
-            JSONArray jsonArray = new JSONArray(result);
-
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
     }
+
+        public String makeRequest (String urlName, String endpoint, String method, String payload){
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            StringBuilder result = new StringBuilder();
+            try {
+                URL url = new URL(urlName + endpoint);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setDoOutput(true);
+                urlConnection.setRequestMethod(method);
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                DataOutputStream os = new DataOutputStream(urlConnection.getOutputStream());
+                byte[] postData = payload.getBytes(StandardCharsets.UTF_8);
+                os.write(postData);
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(
+                        (urlConnection.getInputStream())));
+                String output;
+                while ((output = br.readLine()) != null) {
+                    result.append(output);
+                    Log.d("TESTING TAG", output);
+                    //Toast.makeText(this, output, Toast.LENGTH_SHORT).show();
+                }
+                urlConnection.disconnect();
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(result.toString());
+            return result.toString();
+        }
+
 }

@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: started");
         try {
-            ConnectionHelper connectionHelper = new ConnectionHelper();
+           AppController control = new AppController();
         } catch (Exception e) {
             e.printStackTrace();
         }
