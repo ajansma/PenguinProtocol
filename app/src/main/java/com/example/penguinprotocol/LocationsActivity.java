@@ -28,12 +28,8 @@ public class LocationsActivity extends AppCompatActivity {
     }
 
     private void initLocationNames(AppController appController) {
-        //Uncomment when appController has data
-        //This needs to only take the selected program locations
-        //Base this around the calledProgramName
-//        for (int i = 0; i < appController.getLocationList().size(); ++i) {
-//            locationsNamesList.add(appController.getLocationList().get(i).getName());
-//        }
+        //THIS WILL WORK IF getLocations() returns list of strings
+//        locationNames = AppController.getInstance().getLocations(calledProgramName);
 
         locationNames.add("CAFE");
         locationNames.add("NIGHT CLUB");

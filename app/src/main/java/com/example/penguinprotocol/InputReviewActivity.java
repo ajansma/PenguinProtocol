@@ -17,8 +17,10 @@ public class InputReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_entry);
+        EditText inputName = findViewById(R.id.nameInput);
         EditText inputDate = findViewById(R.id.reviewDateInput);
         RatingBar inputRating = findViewById(R.id.ratingInput);
+        RatingBar inputPrice = findViewById(R.id.priceInput);
         @SuppressLint("WrongViewCast") EditText inputTextBody = findViewById(R.id.reviewTextBody);
         Button submitButton = findViewById(R.id.submitReviewButton);
 
@@ -26,11 +28,14 @@ public class InputReviewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: submitButton");
+                String nameString = inputName.getText().toString();
                 String dateString = inputDate.getText().toString();
                 String ratingString = Float.toString(inputRating.getRating());
+                String priceString = Float.toString(inputPrice.getRating());
                 String textBodyString = inputTextBody.getText().toString();
 
-                //Control.addReview
+
+//                AppController.getInstance().getConnection().addReview(nameString, dateString, "LOCATION", textBodyString, ratingString, priceString);
 
                 setContentView(R.layout.activity_reviews);
             }

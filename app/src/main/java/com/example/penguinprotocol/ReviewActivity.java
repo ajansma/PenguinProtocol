@@ -35,7 +35,6 @@ public class ReviewActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: newReviewButtonClicked");
 
                 setContentView(R.layout.activity_review_entry);
-
             }
         });
 
