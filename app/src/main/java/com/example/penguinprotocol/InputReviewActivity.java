@@ -36,9 +36,8 @@ public class InputReviewActivity extends AppCompatActivity {
                 String priceString = Float.toString(inputPrice.getRating());
                 String textBodyString = inputTextBody.getText().toString();
                 String locationString = inputLocation.getText().toString();
-
-
-//                AppController.getInstance().getConnection().addReview(nameString, dateString, "LOCATION", textBodyString, ratingString, priceString);
+                
+                AppController.getInstance().getConnection().addReview(nameString, dateString, "LOCATION", textBodyString, ratingString, priceString);
 
                 setContentView(R.layout.activity_reviews);
             }
