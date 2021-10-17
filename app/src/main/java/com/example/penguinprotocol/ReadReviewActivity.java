@@ -24,4 +24,6 @@ public class ReadReviewActivity extends AppCompatActivity {
         reviewTitleText.setText(reviewTitle);
         //NEED TO ADD SPACE TO ADD RATING AND TEXT BASED ON THE REVIEW LOCATION AND DATE
     }
+
+
 }
