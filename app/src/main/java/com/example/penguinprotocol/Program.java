@@ -1,7 +1,8 @@
 package com.example.penguinprotocol;
 
 import org.json.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
+//import org.json.simple.JSONObject;
 
 /**
  *
@@ -27,21 +28,18 @@ public class Program {
         this.country = country;
     }
 
-    public Program(JSONObject obj){
-        programName = obj.get("program").toString();
-        city = obj.get("city").toString();
-        school = obj.get("school").toString();
-        country = obj.get("country").toString();
+    public Program(JSONObject obj) {
+        try {
+            programName = obj.getString("name");
+            city = obj.getString("city");
+            school = obj.getString("school");
+            country = obj.getString("country");
+        } catch (Exception e) {
+            System.out.println("Hello");
+        }
     }
 
-    public JSONObject returnJSON(){
-        JSONObject obj = new JSONObject();
-        obj.put("name", programName);
-        obj.put("school", school);
-        obj.put("city", city);
-        obj.put("country", country);
-        return obj;
-    }
+
 
     /**
      * Getters and Setters:

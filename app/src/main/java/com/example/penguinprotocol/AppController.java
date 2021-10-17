@@ -1,8 +1,12 @@
 package com.example.penguinprotocol;
 
-import org.json.simple.JSONObject;
-import java.util.ArrayList;
+//import org.json.simple.JSONObject;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class AppController {
     private ArrayList<Program> programList = new ArrayList<>();
@@ -11,30 +15,41 @@ public class AppController {
     private ArrayList<Location> locationList = new ArrayList<>();
     private DatabaseHandler handler = new DatabaseHandler();
     private static AppController single_instance = null;
+    private ConnectionHelper connection = new ConnectionHelper();
 
     public AppController(){
-        System.out.println("HELLO FROM APP CONTROLLER");
         //gets a json arraylist from the database class
-        ArrayList<JSONObject> jsonArray = handler.pullJSONArray("PROGRAM");
-        for(JSONObject object : jsonArray){
-            programList.add(new Program(object));
-        }
-        //gets an arraylist of reviews from the database class
-        ArrayList<JSONObject> jsonArray2 = handler.pullJSONArray("REVIEW");
-        for(JSONObject object : jsonArray2){
-            reviewList.add(new Review(object));
-        }
-        //gets an arraylist of users from the database class
-        ArrayList<JSONObject> jsonUserArray = handler.pullJSONArray("USER");
-        for(JSONObject object : jsonUserArray){
-            userList.add(new User(object));
-        }
-        ArrayList<JSONObject> jsonUserArray3 = handler.pullJSONArray("USER");
-        for(JSONObject object : jsonUserArray3){
-            locationList.add(new Location(object));
+        String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"PROGRAM\", \"where\": \"\"}");
+        try {
+            JSONObject jsonObj = new JSONObject(jsonString);
+            JSONArray rows = jsonObj.getJSONArray("rows");
+            for(int i = 0; i < rows.length(); i++) {
+                JSONObject firstRowItem = rows.getJSONObject(i);
+                programList.add(new Program(firstRowItem));
+                System.out.println(programList.get(0).getProgramName());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
+    }
 
+    public ArrayList<Review> getReviews(String Location){
+       String payload = String.format("{\"sel\": \"%s\",\"table\": \"%s\",\"where\": \"%s\"}", "*", "LOCATION", "\"location =\\\"" + Location + "\\\"");
+       System.out.println("PAYLOAD" + payload);
+       String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"LOCATION\", \"where\": \"" + Location + "\"");
+        try {
+            JSONObject jsonObj = new JSONObject(jsonString);
+            JSONArray rows = jsonObj.getJSONArray("rows");
+            for(int i = 0; i < rows.length(); i++) {
+                JSONObject firstRowItem = rows.getJSONObject(i);
+                reviewList.add(new Review(firstRowItem));
+                System.out.println(reviewList.get(0).getLocation());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return reviewList;
     }
 
     //Method to make AppController a singleton
@@ -45,12 +60,38 @@ public class AppController {
         return single_instance;
     }
 
+    public ArrayList<String> getLocations(String country){
+        String payload = String.format("{\"sel\": \"%s\", \"table\": \"%s\", \"where\": \"%s\"}", "*", "LOCATION", "country=\\\"" + country + "\\\"");
+        String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", payload);
+        try {
+            JSONObject jsonObj = new JSONObject(jsonString);
+            JSONArray rows = jsonObj.getJSONArray("rows");
+            for(int i = 0; i < rows.length(); i++) {
+                JSONObject firstRowItem = rows.getJSONObject(i);
+                locationList.add(new Location(firstRowItem));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        for(int i = 0; i < locationList.size(); i++){
+            System.out.println(locationList.get(i).getCity());
+        }
+        ArrayList<String> newArray = new ArrayList<>();
+        for(int i = 0; i < locationList.size(); i++){
+            newArray.add(locationList.get(i).getName());
+        }
+         return newArray;
+
+    }
+
     public ArrayList<Program> getProgramList() {
         return programList;
+
     }
 
     public void setProgramList(ArrayList<Program> programList) {
         this.programList = programList;
+
     }
 
     public ArrayList<User> getUserList() {
@@ -83,6 +124,7 @@ public class AppController {
 
     public void setHandler(DatabaseHandler handler) {
         this.handler = handler;
+
     }
 
 
