@@ -2,11 +2,10 @@
     <string name="app_name">PenguinProtocol</string>
     <string name="select_a_program">Select A Program:</string>
     <string name="country_name">COUNTRY_NAME</string>
-    <string name="location_name">Location Name</string>
+    <string name="program_name">Program Name</string>
     <string name="selected_program">SELECTED_PROGRAM</string>
-    <!--    <string-array name="ProgramNames">-->
-<!--        <string>Florence, Italy</string>-->
-<!--        <string>Madrid, Spain</string>-->
-<!--        <string>Copenhagen, Denmark</string>-->
-<!--    </string-array>-->
+    <string name="select_a_location">Select a location:</string>
+    <string name="add_location">Add Location</string>
+    <string name="add_program">Add Program</string>
+
 </resources>
