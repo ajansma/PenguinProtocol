@@ -2,6 +2,7 @@ package com.example.penguinprotocol;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +21,8 @@ public class LocationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_locations);
         Log.d(TAG, "onCreate: called");
         calledProgramName = getIntent().getExtras().getString("programCountry");
+        TextView locationScreenTitle = findViewById(R.id.selectedProgram);
+        locationScreenTitle.setText(calledProgramName);
 
         initLocationNames(AppController.getInstance());
     }
