@@ -60,6 +60,10 @@ public class AppController {
         return single_instance;
     }
 
+    public ConnectionHelper getConnection(){
+        return connection;
+    }
+
     public ArrayList<String> getLocations(String country){
         String payload = String.format("{\"sel\": \"%s\", \"table\": \"%s\", \"where\": \"%s\"}", "*", "LOCATION", "country=\\\"" + country + "\\\"");
         String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", payload);
