@@ -67,4 +67,8 @@ public class Program {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public String getProgramCountry() {
+        return country;
+    }
 }

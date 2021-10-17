@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Program> program = appController.getProgramList();
 
         for (int i = 0; i < program.size(); ++i) {
-            programNames.add(program.get(i).getProgramName());
+            programNames.add(program.get(i).getProgramCountry());
         }
 
 //        programNames.add("TEST");

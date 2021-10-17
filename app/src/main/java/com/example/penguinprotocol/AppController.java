@@ -37,7 +37,7 @@ public class AppController {
     public ArrayList<Review> getReviews(String Location){
        String payload = String.format("{\"sel\": \"%s\",\"table\": \"%s\",\"where\": \"%s\"}", "*", "LOCATION", "\"location =\\\"" + Location + "\\\"");
        System.out.println("PAYLOAD" + payload);
-       String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"LOCATION\", \"where\": \"" + Location + "\"");
+       String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", payload);
         try {
             JSONObject jsonObj = new JSONObject(jsonString);
             JSONArray rows = jsonObj.getJSONArray("rows");

@@ -28,9 +28,16 @@ public class LocationsActivity extends AppCompatActivity {
     }
 
     private void initLocationNames(AppController appController) {
-        locationNames = AppController.getInstance().getLocations(calledProgramName);
 
-        locationNames.add("CAFE");
+
+        ArrayList<String> temp = AppController.getInstance().getLocations(calledProgramName);
+        Log.d(TAG, "initLocationNames: " + temp);
+
+        for (int i = 0; i < temp.size(); ++i) {
+            locationNames.add(temp.get(i));
+        }
+
+//        locationNames.add("CAFE");
 //        locationNames.add("NIGHT CLUB");
 //        locationNames.add("BAR");
 

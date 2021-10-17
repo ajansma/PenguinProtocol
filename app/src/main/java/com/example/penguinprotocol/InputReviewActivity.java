@@ -32,8 +32,8 @@ public class InputReviewActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: submitButton");
                 String nameString = inputName.getText().toString();
                 String dateString = inputDate.getText().toString();
-                String ratingString = Float.toString(inputRating.getRating());
-                String priceString = Float.toString(inputPrice.getRating());
+                String ratingString = "3";//Float.toString(inputRating.getRating());
+                String priceString = "3";//Float.toString(inputPrice.getRating());
                 String textBodyString = inputTextBody.getText().toString();
                 String locationString = inputLocation.getText().toString();
                 
