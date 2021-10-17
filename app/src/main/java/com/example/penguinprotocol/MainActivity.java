@@ -40,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCountryNames(AppController appController) {
+        ArrayList<Program> program = appController.getProgramList();
+
+        for (int i = 0; i < program.size(); ++i) {
+            programNames.add(program.get(i).getProgramName());
+        }
+
+//        programNames.add("TEST");
 
         initCountryRecyclerView();
     }

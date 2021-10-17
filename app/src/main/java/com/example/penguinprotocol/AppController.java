@@ -85,6 +85,18 @@ public class AppController {
     }
 
     public ArrayList<Program> getProgramList() {
+//        String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"PROGRAM\", \"where\": \"\"}");
+//        try {
+//            JSONObject jsonObj = new JSONObject(jsonString);
+//            JSONArray rows = jsonObj.getJSONArray("rows");
+//            for(int i = 0; i < rows.length(); i++) {
+//                JSONObject firstRowItem = rows.getJSONObject(i);
+//                programList.add(new Program(firstRowItem));
+//                System.out.println(programList.get(0).getProgramName());
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
         return programList;
 
     }
@@ -124,8 +136,6 @@ public class AppController {
 
     public void setHandler(DatabaseHandler handler) {
         this.handler = handler;
-
     }
-
 
 }

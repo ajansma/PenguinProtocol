@@ -28,12 +28,11 @@ public class LocationsActivity extends AppCompatActivity {
     }
 
     private void initLocationNames(AppController appController) {
-        //THIS WILL WORK IF getLocations() returns list of strings
-//        locationNames = AppController.getInstance().getLocations(calledProgramName);
+        locationNames = AppController.getInstance().getLocations(calledProgramName);
 
         locationNames.add("CAFE");
-        locationNames.add("NIGHT CLUB");
-        locationNames.add("BAR");
+//        locationNames.add("NIGHT CLUB");
+//        locationNames.add("BAR");
 
         initLocationRecyclerView();
     }
