@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: started");
         try {
            AppController control = new AppController();
+            ArrayList<Program> programList = control.getProgramList();
+            String country = programList.get(0).getCountry();
+            ArrayList<Location> reviewList = control.getLocations(country);
+            System.out.println(reviewList.get(0).getCity());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         //for (int i = 0; i < appController.getProgramList().size(); ++i) {
        //     locationNames.add(appController.getProgramList().get(i).getCountry());
        //}
+
 
         programNames.add("Italy");
         programNames.add("Spain");

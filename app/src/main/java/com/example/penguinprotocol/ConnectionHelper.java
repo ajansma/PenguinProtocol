@@ -67,4 +67,10 @@ public class ConnectionHelper {
             return result.toString();
         }
 
+    public void addReview(String user, String date, String location, String text, String stars, String price) {
+        String payload = String.format("{\"user\": \"%s\",\"date\": \"%s\",\"location\": \"%s\",\"text\": \"%s\",\"stars\": \"%s\",\"price\": \"%s\"}", user, date, location, text, stars, price);
+        Log.d(TAG, payload);
+        makeRequest("http://147.222.70.33", "/add-review", "POST", payload);
+    }
+
 }
