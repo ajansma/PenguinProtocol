@@ -1,8 +1,12 @@
 package com.example.penguinprotocol;
 
-import org.json.simple.JSONObject;
-import java.util.ArrayList;
+//import org.json.simple.JSONObject;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class AppController {
     private ArrayList<Program> programList = new ArrayList<>();
@@ -11,15 +15,30 @@ public class AppController {
     private ArrayList<Location> locationList = new ArrayList<>();
     private DatabaseHandler handler = new DatabaseHandler();
     private static AppController single_instance = null;
+    private ConnectionHelper connection = new ConnectionHelper();
 
     public AppController(){
-        System.out.println("HELLO FROM APP CONTROLLER");
         //gets a json arraylist from the database class
-        ArrayList<JSONObject> jsonArray = handler.pullJSONArray("PROGRAM");
-        for(JSONObject object : jsonArray){
-            programList.add(new Program(object));
+        String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"PROGRAM\", \"where\": \"\"}");
+        try {
+            JSONObject jsonObj = new JSONObject(jsonString);
+            JSONArray rows = jsonObj.getJSONArray("rows");
+            for(int i = 0; i < rows.length(); i++) {
+                JSONObject firstRowItem = rows.getJSONObject(i);
+                programList.add(new Program(firstRowItem));
+                System.out.println(programList.get(0).getProgramName());
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
+        // for(JSONObject object : jsonArray){
+       //     programList.add(new Program(object));
+       // }
+
+        /*
         //gets an arraylist of reviews from the database class
         ArrayList<JSONObject> jsonArray2 = handler.pullJSONArray("REVIEW");
         for(JSONObject object : jsonArray2){
@@ -35,6 +54,7 @@ public class AppController {
             locationList.add(new Location(object));
         }
 
+         */
 
     }
 
