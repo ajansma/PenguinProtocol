@@ -20,14 +20,13 @@ import java.util.ArrayList;
 /**
  * Parent Class to all of the recycler views
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class ProgramRecyclerViewAdapter extends RecyclerView.Adapter<ProgramRecyclerViewAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
 
     private ArrayList<String> itemNames = new ArrayList<>();
     private Context mContext;
-    private AppController appController = new AppController();
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> itemNames) {
+    public ProgramRecyclerViewAdapter(Context mContext, ArrayList<String> itemNames) {
         this.itemNames = itemNames;
         this.mContext = mContext;
     }
@@ -54,8 +53,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Toast.makeText(mContext, itemNames.get(position), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(mContext, LocationsActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putStringArrayList(appController.getLocationList());
+                Bundle bundle = new Bundle();
+                bundle.putString("programCountry", itemNames.get(position));
+                intent.putExtras(bundle);
                 mContext.startActivity(intent);
 
             }
@@ -74,7 +74,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemText = itemView.findViewById(R.id.location_name);
+            itemText = itemView.findViewById(R.id.item_name);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
