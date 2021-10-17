@@ -34,6 +34,22 @@ public class AppController {
 
     }
 
+    public ArrayList<Review> getReviews(String Location){
+        String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"LOCATION\", \"where\": \"" + Location + "\"");
+        try {
+            JSONObject jsonObj = new JSONObject(jsonString);
+            JSONArray rows = jsonObj.getJSONArray("rows");
+            for(int i = 0; i < rows.length(); i++) {
+                JSONObject firstRowItem = rows.getJSONObject(i);
+                reviewList.add(new Review(firstRowItem));
+                System.out.println(reviewList.get(0).getLocation());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return reviewList;
+    }
+
     //Method to make AppController a singleton
     public static AppController getInstance() {
         if (single_instance == null) {
