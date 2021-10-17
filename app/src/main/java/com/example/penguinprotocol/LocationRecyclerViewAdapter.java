@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  */
 class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRecyclerViewAdapter.LocationViewHolder> {
-    private static final String TAG = "CountryViewAdapter";
+    private static final String TAG = "LocationViewAdapter";
 
     private ArrayList<String> locationNames = new ArrayList<>();
     private Context mContext;
@@ -51,12 +51,11 @@ class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRecyclerV
 
                 Toast.makeText(mContext, locationNames.get(position), Toast.LENGTH_LONG).show();
 
-                //CHANGE THIS TO GO TO THE REVIEW RECYCLER VIEW ADAPTER
-//                Intent intent = new Intent(mContext, LocationsActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("locationName", locationNames.get(position));
-//                intent.putExtras(bundle);
-//                mContext.startActivity(intent);
+                Intent intent = new Intent(mContext, ReviewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("locationName", locationNames.get(position));
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
 
             }
         });

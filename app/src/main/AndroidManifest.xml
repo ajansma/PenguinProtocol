@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LocationsActivity" />
+        <activity android:name=".ReviewActivity"/>
+        <activity android:name=".ReadReviewActivity"/>
     </application>
 
 </manifest>
