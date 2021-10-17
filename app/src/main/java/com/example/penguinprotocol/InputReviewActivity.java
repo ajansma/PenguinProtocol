@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +22,7 @@ public class InputReviewActivity extends AppCompatActivity {
         EditText inputDate = findViewById(R.id.reviewDateInput);
         RatingBar inputRating = findViewById(R.id.ratingInput);
         RatingBar inputPrice = findViewById(R.id.priceInput);
+        EditText inputLocation = findViewById(R.id.locationInput);
         @SuppressLint("WrongViewCast") EditText inputTextBody = findViewById(R.id.reviewTextBody);
         Button submitButton = findViewById(R.id.submitReviewButton);
 
@@ -33,6 +35,7 @@ public class InputReviewActivity extends AppCompatActivity {
                 String ratingString = Float.toString(inputRating.getRating());
                 String priceString = Float.toString(inputPrice.getRating());
                 String textBodyString = inputTextBody.getText().toString();
+                String locationString = inputLocation.getText().toString();
 
 
 //                AppController.getInstance().getConnection().addReview(nameString, dateString, "LOCATION", textBodyString, ratingString, priceString);
