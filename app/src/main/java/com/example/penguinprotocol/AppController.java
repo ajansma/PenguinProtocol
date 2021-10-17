@@ -28,33 +28,9 @@ public class AppController {
                 programList.add(new Program(firstRowItem));
                 System.out.println(programList.get(0).getProgramName());
             }
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        // for(JSONObject object : jsonArray){
-       //     programList.add(new Program(object));
-       // }
-
-        /*
-        //gets an arraylist of reviews from the database class
-        ArrayList<JSONObject> jsonArray2 = handler.pullJSONArray("REVIEW");
-        for(JSONObject object : jsonArray2){
-            reviewList.add(new Review(object));
-        }
-        //gets an arraylist of users from the database class
-        ArrayList<JSONObject> jsonUserArray = handler.pullJSONArray("USER");
-        for(JSONObject object : jsonUserArray){
-            userList.add(new User(object));
-        }
-        ArrayList<JSONObject> jsonUserArray3 = handler.pullJSONArray("USER");
-        for(JSONObject object : jsonUserArray3){
-            locationList.add(new Location(object));
-        }
-
-         */
 
     }
 
@@ -66,12 +42,33 @@ public class AppController {
         return single_instance;
     }
 
+    public ArrayList<Location> getLocations(String country){
+        String jsonString = connection.makeRequest("http://147.222.70.33","/basic-query", "POST", "{\"sel\": \"*\", \"table\": \"LOCATION\", \"where\": \"" + country + "\"");
+        try {
+            JSONObject jsonObj = new JSONObject(jsonString);
+            JSONArray rows = jsonObj.getJSONArray("rows");
+            for(int i = 0; i < rows.length(); i++) {
+                JSONObject firstRowItem = rows.getJSONObject(i);
+                locationList.add(new Location(firstRowItem));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        for(int i = 0; i < locationList.size(); i++){
+            System.out.println(locationList.get(i).getCity());
+        }
+        return locationList;
+
+    }
+
     public ArrayList<Program> getProgramList() {
         return programList;
+
     }
 
     public void setProgramList(ArrayList<Program> programList) {
         this.programList = programList;
+
     }
 
     public ArrayList<User> getUserList() {

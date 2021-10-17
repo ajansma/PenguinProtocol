@@ -2,6 +2,8 @@ package com.example.penguinprotocol;
 
 import org.json.simple.JSONObject;
 
+//import org.json.JSONObject;
+
 public class Review {
     private int review_id;
     private int user;
@@ -26,13 +28,14 @@ public class Review {
     }
 
     public Review(JSONObject obj){
-        review_id = (int)(obj.get("rid"));
-        user = (int)(obj.get("uid"));
-        date = (int)(obj.get("date"));
+        /*
+        date = obj.getString("date");
         location = (int)(obj.get("location"));
         text = obj.get("text").toString();
         stars = (int)(obj.get("stars"));
         price = (int)(obj.get("price"));
+
+         */
     }
 
     public JSONObject toJSON(){

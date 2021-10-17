@@ -1,6 +1,8 @@
 package com.example.penguinprotocol;
 
-import org.json.simple.JSONObject;
+//import org.json.simple.JSONObject;
+
+import org.json.JSONObject;
 
 public class Location {
     public String name;
@@ -17,14 +19,18 @@ public class Location {
     }
 
     public Location(JSONObject obj){
-        name = obj.get("name").toString();
-        address = obj.get("address").toString();
-        city = obj.get("city").toString();
-        country = obj.get("country").toString();
-        location_id = (int)( obj.get("lid"));
+        try {
+            name = obj.getString("name");
+            address = obj.getString("address");
+            city = obj.getString("city");
+            country = obj.getString("country");
+        }
+        catch(Exception e){
+            System.out.println("FAIL");
+        }
     }
 
-
+/*
     public JSONObject returnJSON(){
         JSONObject obj = new JSONObject();
         obj.put("name", name);
@@ -33,6 +39,8 @@ public class Location {
         obj.put("country", country);
         return obj;
     }
+
+ */
 
     /**
      * Getters and Setters:
